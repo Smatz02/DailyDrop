@@ -178,6 +178,15 @@ struct FeedView: View {
                             Text(submission.timestamp, style: .date)
                                 .font(.caption2)
                                 .foregroundColor(.secondary.opacity(0.7))
+                            Button(action: {
+                                    openInSpotify(submission.spotifyURL)
+                                }) {
+                                    Text("Open in Spotify")
+                                        .font(.caption)
+                                        .foregroundColor(.blue)
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                                .padding(.top, 4)
                         }
                     }
                     .padding(.vertical, 8)
@@ -200,5 +209,11 @@ struct FeedView: View {
             }
         }
     }
+    func openInSpotify(_ urlString: String) {
+        if let url = URL(string: urlString) {
+            UIApplication.shared.open(url)
+        }
+    }
+
 }
 
